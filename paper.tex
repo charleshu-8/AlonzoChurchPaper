@@ -1,0 +1,222 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%2345678901234567890123456789012345678901234567890123456789012345678901234567890
+%        1         2         3         4         5         6         7         8
+
+\documentclass[letterpaper, 10 pt, conference]{ieeeconf}  % Comment this line out
+                                                          % if you need a4paper
+%\documentclass[a4paper, 10pt, conference]{ieeeconf}      % Use this line for a4
+                                                          % paper
+
+\IEEEoverridecommandlockouts                              % This command is only
+                                                          % needed if you want to
+                                                          % use the \thanks command
+\overrideIEEEmargins
+% See the \addtolength command later in the file to balance the column lengths
+% on the last page of the document
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+
+% The following packages can be found on http:\\www.ctan.org
+%\usepackage{graphics} % for pdf, bitmapped graphics files
+%\usepackage{epsfig} % for postscript graphics files
+%\usepackage{mathptmx} % assumes new font selection scheme installed
+%\usepackage{mathptmx} % assumes new font selection scheme installed
+%\usepackage{amsmath} % assumes amsmath package installed
+%\usepackage{amssymb}  % assumes amsmath package installed
+
+\title{\LARGE \bf
+Alonzo Church and Lambda Calculus
+}
+
+%\author{ \parbox{3 in}{\centering Huibert Kwakernaak*
+%         \thanks{*Use the $\backslash$thanks command to put information here}\\
+%         Faculty of Electrical Engineering, Mathematics and Computer Science\\
+%         University of Twente\\
+%         7500 AE Enschede, The Netherlands\\
+%         {\tt\small h.kwakernaak@autsubmit.com}}
+%         \hspace*{ 0.5 in}
+%         \parbox{3 in}{ \centering Pradeep Misra**
+%         \thanks{**The footnote marks may be inserted manually}\\
+%        Department of Electrical Engineering \\
+%         Wright State University\\
+%         Dayton, OH 45435, USA\\
+%         {\tt\small pmisra@cs.wright.edu}}
+%}
+
+\author{Charles Hu% <-this % stops a space
+}
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+\pagestyle{empty}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{abstract}
+
+Alonzo Church was a mathematician and philosopher known for his work on formal logic and computability theory. Chief among his achievements was his development of lambda caclulus, which paved the way for early computer science by providing a means to effectively decide the computability of an algorithm.
+
+\end{abstract}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{INTRODUCTION}
+
+Alonzo Church was an American mathematician and philosopher renowned for his contributions to logic and early theoretical computer science. He is often considered one of the founders of the field of computer science for his substantial work in establishing the foundations of computability theory. In particular, his work on lambda calculus and the Church-Turing thesis paved the way for the determination and modeling of effective computability and decidability of algorithms.
+
+\section{LIFE}
+
+\subsection{Early Life}
+
+Alonzo Church was born on June 14, 1903 in Washington D.C. to Samuel Robbins Church and Mildred Hannah Letterman Parker. He went to Princeton University for his undergraduate degree in mathematics and graduated in 1924. He then stayed there for his doctorate under the supervision of Oswald Veblen \cite{Connor}. During this time, he met and married Mary Julia Kuczinski. Together, they had three children: Alonzo Jr., Mary Ann, and Mildred.
+
+Church received his doctorate three years later in 1927 for his dissertation on the axiom of choice in Zermelo-Fraenkel set theory \cite{Church5}. Following this, he worked at a number of different research institutions until he finally returned to Princeton in 1929 as an Assistant Professor of Mathematics \cite{Connor}.
+
+\subsection{Career}
+
+Church was promoted to Associate Professor in 1939 and later would gain full professorship in 1947. In 1961, Church became a Professor of Mathematics and Philosophy, a position he held until he left Princeton in 1967. He then moved to the University of California at Los Angeles where he worked as a Kent Professor of Philosophy and Professor of Mathematics until his full retirement in 1990 \cite{Connor}. Church spent the last years of his life in Hudson, Ohio, where he died on August 11, 1995 \cite{Britannica}.
+
+During his tenure, Church would advise 31 doctoral students, the most well known of which being Alan Turing and Stephen Kleene. Church would also pioneer the formalization of logic with his proposal of lambda calculus, which led to the development of Church's theorem and the Church-Turing thesis.
+
+\section{LAMBDA CALCULUS}
+
+\subsection{Development}
+
+Lambda calculus (also written as $\lambda$-calculus) is a set of notations and conventions devised to formalize the description of functions and their applications \cite{Deutsch1}. It was first proposed by Church through a set of two papers published in 1932 \cite{Church1} and 1933 \cite{Church2} in an attempt to provide a consistent, nonparadoxical system of abstraction for the representation of formal logic; however, a number of idiosyncrasies existed in lambda calculus that persisted until 1936 \cite{Steinert}. That year, Church finally developed the first and simplest fully logically consistent version of lambda calculus \cite{Church4}, now known as untyped lambda calculus. Church and others would continue to work on expanding the formalisms of lambda calculus to create versions of what would later be known as typed lambda calculus, which encorporates a system of assignable types for functions.
+
+\subsection{Definition}
+
+The most basic unit of lambda calculus is the variable, which is denoted as any arbitrary symbol (alphabetical symbols will be used here). Variables serve as nonspecific identifiers, and multiple variables can be combined to form an expression. Thus, for variables $x$, $y$, and $z$, we can create the expression $xyz$.
+
+Functions are components which allow for the application of expressions and are necessary for expression resolution. A function typically is structured as follows:
+
+\begin{equation}
+    \lambda <variable> . <expression>
+\end{equation}
+
+The subsection before the period is known as the head, and the subsection after the period is known as the body. A function operates by binding a variable in the head and resolving instances of that variable in the body via application with another expression that follows the function. Variables that are bound by a lambda are referred to as bound variables, while variables not bound by a lambda are referred to as free variables.
+
+Applications are the resolution mechanism in lambda caclulus and operate via substitution. An application will always consist of a function followed by another expression (from now on referred to as the applied expression as opposed to the function expression in the function body). To resolve an application, every instance of the bound variable that can also be found in the function expression must be substituted by an applied expression. For instance, consider the following application and its resolution:
+
+\begin{equation}
+    (\lambda x . xyz) (abc) = abcyz
+\end{equation}
+
+These components can be recursively defined \cite{Rojas} as follows:
+
+\begin{equation}
+    \begin{split}
+    <expression> := &<variable>\\
+                    &| <function>\\
+                    &| <application>\\
+                    &| <expression> <expression>\\
+    \end{split}
+\end{equation}
+\begin{equation}
+    <function> := \lambda <variable> . <expression>
+\end{equation}
+\begin{equation}
+    <application> := <function> <expression>
+\end{equation}
+
+Note that common shorthand writing includes parentheses and simplified nested function heads. These are primarily for clarity and do not change the operation precedence, which is left associative. This is summarized in the following:
+
+\begin{equation}
+    (x) \equiv x
+\end{equation}
+\begin{equation}
+    xyz \equiv (xy)z
+\end{equation}
+\begin{equation}
+    \lambda x . \lambda y . xyz \equiv \lambda x . (\lambda y.xyz) \equiv \lambda xy.xyz
+\end{equation}
+
+\subsection{Application}
+
+Lambda caclulus is commonly used in mathematics and in computer science to formally describe the computation of algorithms. It also sees usage in fields such as linguistics for syntactic structure mapping \cite{Deustch2}.
+
+A common example of an application of lambda calculus is the construction of basic natural number addition, also known as an addition algorithm. This can be developed by viewing addition as the repetition of the succession of natural numbers (i.e., $x + y$ is equivalent to incrementing $y$ by 1 $x$ times).
+
+To begin, natural numbers can be defined as the incrementation of the number 0 by 1. This is formalized \cite{Rojas} as our base number 0 and a successor function as follows:
+
+\begin{equation}
+    0 := \lambda ab . b
+\end{equation}
+\begin{equation}
+    successor := \lambda xyz . y(xyz)
+\end{equation}
+
+So the number 1 can be formalized as a succession upon 0 as such:
+
+\begin{equation}
+    (\lambda xyz . y(xyz))(\lambda ab . b)
+\end{equation}
+\begin{equation}
+    = \lambda yz . y((\lambda ab . b)yz)
+\end{equation}
+\begin{equation}
+    = \lambda yz . y((\lambda b . b)z)
+\end{equation}
+\begin{equation}
+    = \lambda yz . y(z) \equiv \lambda ab . a(b) \equiv 1
+\end{equation}
+
+Note that since variables are arbitrary, they can be substituted ad hoc for consistency and clarity. Here, variables $y$ and $z$ are replaced with $a$ and $b$ in the final result for visual consistency across the developed definitions.
+
+Addition can then be viewed as applying the successor function on a given number by some number of times. So 1 + 2 is equivalent to applying the successor function one time to the number 2 as follows:
+
+\begin{equation}
+    1 + 2
+\end{equation}
+\begin{equation}
+    \equiv (\lambda ab . a(b)) (\lambda xyz . y(xyz)) (\lambda cd . c(c(d)))
+\end{equation}
+\begin{equation}
+    = (\lambda b . (\lambda xyz . y(xyz)) (b)) (\lambda cd . c(c(d)))
+\end{equation}
+\begin{equation}
+    = (\lambda xyz . y(xyz)) (\lambda cd . c(c(d)))
+\end{equation}
+\begin{equation}
+    = (\lambda yz . y((\lambda cd . c(c(d))) yz))
+\end{equation}
+\begin{equation}
+    = (\lambda yz . y((\lambda d . y(y(d))) z))
+\end{equation}
+\begin{equation}
+    = \lambda yz . y(y(y(z))) \equiv 3
+\end{equation}
+
+\subsection{Impact}
+
+Lambda calculus is significant in that it provides a robust and powerful framework which allows for the easy expression of algorithmic functions. Leveraging the descriptive capabilities of lambda calculus, Church provably qualified the intuitive notion that algorithms existed and were calculable through the construction of the formal definition of an algorithm and its function via $\lambda$-definablity. He posited that an algorithm was effectively calculable if and only if it could be constructed using lambda calculus and recursively defined \cite{Church4}. An example of this can be seen with the previously described addition algorithm (recall how it was recursively defined from base integer 0 and leveraged $\lambda$-defined functions to perform the algorithm of addition).
+
+Church's graduate student, Alan Turing, would later verify Church's findings independently through his development of Turing machines to solve the issue of computable numbers and the Entscheidungsproblem \cite{Turing1}. Turing himself would note the equivalency of his Turing machines and Church's lambda calculus for effective computability in a follow-up paper \cite{Turing2}. Church's $\lambda$-definability, combined with Turing's Turing machines and Gödel's definition for general recursive functions, serves as the basis of what is now known as the Church-Turing thesis, which provides a general foundational understanding of the computability of a function given its nature and describability by the aforementioned theoretical frameworks.
+
+\section{CONCLUSION}
+
+Church's work on lambda calculus revolutionized mathematical logic by providing an expressive framework to formally define algorithms. Using lambda calculus, Church was able to answer the Entscheidungsproblem by proving that first-order logic is not decidable \cite{Church3}. He would also go on to use lambda calculus to provide a proof for effective computability of an algorithm \cite{Church4}, which would be later combined with Turing's proof for the effective computability for Turing machines to create the Church-Turing thesis. These achievements helped found early theoretical computer science by providing a means to write potential computer algorithms and verify their effective calculability and limitations.
+
+\addtolength{\textheight}{-12cm}   % This command serves to balance the column lengths
+                                  % on the last page of the document manually. It shortens
+                                  % the textheight of the last page by a suitable amount.
+                                  % This command does not take effect until the next page
+                                  % so it should come on the page before the last. Make
+                                  % sure that you do not shorten the textheight too much.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{thebibliography}{99}
+
+\bibitem{Church5} A. Church, “Alternatives to Zermelo's assumption,” Transactions of the American Mathematical Society, vol. 29, no. 1, pp. 178-208, 1927, doi: https://doi.org/10.1090/S0002-9947-1927-1501383-1.
+\bibitem{Church1} A. Church, “A Set of Postulates for the Foundation of Logic,” The Annals of Mathematics, vol. 33, no. 2, p. 346, Apr. 1932, doi: https://doi.org/10.2307/1968337.
+\bibitem{Church2} A. Church, “A Set of Postulates For the Foundation of Logic,” The Annals of Mathematics, vol. 34, no. 4, p. 839, Oct. 1933, doi: https://doi.org/10.2307/1968702.
+\bibitem{Church3} A. Church, “A note on the Entscheidungsproblem,” Journal of Symbolic Logic, vol. 1, no. 1, pp. 40-41, Mar. 1936, doi: https://doi.org/10.2307/2269326.
+\bibitem{Church4} A. Church, “An Unsolvable Problem of Elementary Number Theory,” American Journal of Mathematics, vol. 58, no. 2, p. 345, Apr. 1936, doi: https://doi.org/10.2307/2371045.
+\bibitem{Turing1} A. M. Turing, “On Computable Numbers, with an Application to the Entscheidungsproblem,” Proceedings of the London Mathematical Society, vol. s2-42, no. 1, pp. 230-265, 1937, doi: https://doi.org/10.1112/plms/s2-42.1.230.
+\bibitem{Turing2} A. M. Turing, “Computability and $\lambda$-definability,” Journal of Symbolic Logic, vol. 2, no. 4, pp. 153-163, 1937. doi:10.2307/2268280.
+\bibitem{Deutsch1} H. Deutsch and O. Marshall, “Alonzo Church,” Stanford Encyclopedia of Philosophy, 2023. https://plato.stanford.edu/entries/church/supplementD.html
+\bibitem{Deustch2} H. Deutsch and O. Marshall, “The $\lambda$-Calculus and Type Theory,” Stanford Encyclopedia of Philosophy, 2023. https://plato.stanford.edu/entries/church/supplementD.html
+\bibitem{Connor} J. O'Connor and E. Robertson , “Alonzo Church - Biography,” Maths History, Nov. 2004. https://mathshistory.st-andrews.ac.uk/Biographies/Church/
+\bibitem{Rojas} R. Rojas, “A Tutorial Introduction to the Lambda Calculus,” arXiv.org, Mar. 27, 2015. https://arxiv.org/abs/1503.09060
+\bibitem{Steinert} S. Steinert-Threlkeld, “Lambda Calculi,” Internet Encyclopedia of Philosophy. https://iep.utm.edu/lambda-calculi/
+\bibitem{Britannica} The Editors of Encyclopaedia Britannica, “Alonzo Church,” Britannica, Aug. 07, 2023. https://www.britannica.com/biography/Alonzo-Church
+
+\end{thebibliography}
+\end{document}
